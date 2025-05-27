@@ -1,13 +1,33 @@
 package com.Biblioteka.BibliotekaAPI.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class BookCopy {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long book_id;
     private String status;
+
+    @OneToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    public BookCopy(Book book, String status) {
+        this.book = book;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "BookCopy{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

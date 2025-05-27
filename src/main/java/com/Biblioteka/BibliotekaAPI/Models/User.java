@@ -1,15 +1,28 @@
 package com.Biblioteka.BibliotekaAPI.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter
+@Entity
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Table(name = "Users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
     private String password;
     private String role;
     private String email;
+
+    public User(String username, String password, String role, String email) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.email = email;
+    }
 }

@@ -1,15 +1,29 @@
 package com.Biblioteka.BibliotekaAPI.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter
+@Entity
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String author;
     private String isbn;
     private int publication_year;
+
+    public Book(String title, String author, String isbn, int publication_year) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.publication_year = publication_year;
+    }
 }
