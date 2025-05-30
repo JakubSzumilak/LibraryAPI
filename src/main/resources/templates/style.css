@@ -1,0 +1,10 @@
+body {
+    background-color: #151515;
+    background-image: url("../static/images/library.jpg");
+    backdrop-filter: brightness(45%) blur(2px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    width: 100vw;
+    height: 100vh;
+}

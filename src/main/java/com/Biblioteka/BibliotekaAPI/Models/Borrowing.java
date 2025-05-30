@@ -15,16 +15,18 @@ public class Borrowing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private LocalDate borrow_date;
+    @Column(nullable = false)
     private LocalDate due_date;
     private LocalDate return_date;
 
     @OneToOne
-    @JoinColumn(name = "book_copy_id")
+    @JoinColumn(name = "book_copy_id", nullable = false)
     private BookCopy bookCopy;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Override

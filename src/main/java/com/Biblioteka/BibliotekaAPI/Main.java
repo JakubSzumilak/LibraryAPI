@@ -4,6 +4,7 @@ import com.Biblioteka.BibliotekaAPI.Models.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -42,6 +43,8 @@ public class Main {
 		bookCopies.add(new BookCopy(books.get(4), "available"));
 		bookCopyRepo.saveAll(bookCopies);
 
+
+
 //		List<Borrowing> borrowings = new ArrayList<>();
 //		borrowings.add(new Borrowing(bookCopies.get(0), users.get(0), LocalDate.now(),LocalDate.now(),LocalDate.now()));
 //		borrowings.add(new Borrowing(bookCopies.get(0), users.get(1), LocalDate.now(),LocalDate.now(),LocalDate.now().withYear(1)));
@@ -50,10 +53,17 @@ public class Main {
 //		borrowings.add(new Borrowing(bookCopies.get(4), users.get(3), LocalDate.now(),LocalDate.now(),LocalDate.now().withYear(4)));
 //		borrowingRepo.saveAll(borrowings);
 		//BookCopy bookCopy, User user, Date borrow_date, Date due_date, Date return_date
+		Borrowing b = new Borrowing();
+		b.setBookCopy(bookCopies.get(4));
+		b.setUser(users.get(1));
+		b.setBorrow_date(LocalDate.now());
+		b.setDue_date(LocalDate.now());
+		b.setReturn_date(LocalDate.now());
+		borrowingRepo.save(b);
 
 
-		Scanner scanner = new Scanner(System.in);
-		scanner.next();
+//		Scanner scanner = new Scanner(System.in);
+//		scanner.next();
 
 		System.out.println("Users:");
 		userRepo.findAll().forEach(System.out::println);
@@ -66,8 +76,10 @@ public class Main {
 		System.out.println("Borrowings:");
 		borrowingRepo.findAll().forEach(System.out::println);
 
+
+		// login details
 		System.out.println("\n\n\n\t\t\tUsername = user");
-		System.out.println("\t\t\tPassword = password\n\n\n");
+		System.out.println("\t\t\tPassword = pass\n\n\n");
 	}
 
 
